@@ -4,6 +4,7 @@ Simple Javascript classes for handle form fields and errors.
 
 ## How to use
 
+### Add plugin to Vue app
 Simply import package from npm and add it as a plugin to your Vue app:
 
 ``` JavaScript
@@ -15,6 +16,8 @@ app.use(VueForm, 'Form');
 app.mount('#app');
 
 ```
+
+### Define new Form data property
 
 As you can see in ```.use(VueForm, 'Form')```, second property is the name of global prop for Form class in your application. So feel free to set any name you want. The default will be ```'Form'``` with capital ```'F'```. 
 
@@ -50,6 +53,37 @@ export default {
     }
 }
 </script>
+```
+
+### &lt;script Setup&gt; format
+
+``` JavaScript
+<script setup>
+import { ref } from 'vue'
+
+const form = ref({
+    username: '',
+    password: ''
+})
+</script>
+```
+
+
+### Access form field value in Vue template
+
+If you add Form as component data property, Now you can set input value to form field like this:
+
+``` JavaScript
+<template>
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" v-model="form.username" id="username">
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" v-model="form.password"  id="password">
+    </div>
+</template>
 ```
 
 ## Error handling
