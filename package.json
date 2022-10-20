@@ -1,0 +1,23 @@
+{
+  "private": false,
+  "name": "sadrix-vue-form",
+  "version": "1.0.0",
+  "description": "Simple Javascript classes for handle form fields and errors.",
+  "main": "./src/index.js",
+  "author": "sadrix",
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "form",
+    "error handler",
+    "sadrix"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sadrix/vue-form.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sadrix/vue-form/issues"
+  },
+  "homepage": "https://github.com/sadrix/vue-form#readme"
+}
