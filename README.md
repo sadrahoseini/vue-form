@@ -2,6 +2,15 @@
 
 Simple Javascript classes for handle form fields and errors.
 
+## Installation
+
+Install latest version with ```npm```:
+```
+npm i sadrix-vue-form
+```
+
+View package on [npm website](https://www.npmjs.com/package/sadrix-vue-form).
+
 ## How to use
 
 ### Add plugin to Vue app
