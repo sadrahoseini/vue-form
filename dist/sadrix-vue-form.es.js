@@ -1,13 +1,4 @@
-var a = (e, r, t) => {
-  if (!r.has(e))
-    throw TypeError("Cannot " + t);
-};
-var h = (e, r, t) => (a(e, r, "read from private field"), t ? t.call(e) : r.get(e)), i = (e, r, t) => {
-  if (r.has(e))
-    throw TypeError("Cannot add the same private member more than once");
-  r instanceof WeakSet ? r.add(e) : r.set(e, t);
-};
-class c {
+class n {
   constructor() {
     this.errors = {};
   }
@@ -42,23 +33,25 @@ class c {
       return this.errors = {};
   }
 }
-var o;
-class n {
+class o {
   constructor(r) {
-    i(this, o, []);
-    for (const [t, s] of Object.entries(r))
-      ["errors", "__fields"].includes(t) || (this[t] = s, h(this, o).push(t));
-    this.errors = new c();
+    let t = [];
+    if (typeof r == "object")
+      for (const [s, i] of Object.entries(r))
+        ["errors", "__fields"].includes(s) || (this[s] = i, t.push(s));
+    else
+      console.warn("[sadrix-vue-form]: Create new Form with an object passed as constructor parameter.");
+    this.__fields = t, this.errors = new n();
   }
   has(r) {
-    return h(this, o).includes(r);
+    return this.__fields.includes(r);
   }
   get(r) {
     return this.has(r) ? this[r] : null;
   }
   all() {
     let r = {};
-    return h(this, o).map((t) => {
+    return this.__fields.map((t) => {
       r[t] = this.get(t);
     }), r;
   }
@@ -70,21 +63,20 @@ class n {
   }
   except(r) {
     let t = {};
-    return h(this, o).map((s) => {
+    return this.__fields.map((s) => {
       typeof r == "string" && (s !== r ? t[s] = this.get(s) : r.includes(s) || (t[s] = this.get(s)));
     }), t;
   }
 }
-o = new WeakMap();
-const l = {
+const h = {
   install(e, r = "Form") {
     try {
-      r = r || "Form", e.config.globalProperties[`$${r}`] = n, window[r] = n;
+      r = r || "Form", e.config.globalProperties[`$${r}`] = o, window[r] = o;
     } catch {
       console.warn("[Sadrix-Vue-Fomr]: propName is invalid: " + r);
     }
   }
 };
 export {
-  l as default
+  h as default
 };
