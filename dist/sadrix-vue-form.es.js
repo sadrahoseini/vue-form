@@ -16,7 +16,8 @@ class n {
         t.includes(s) && (this.errors[s] = r[s]);
   }
   get(r) {
-    return this.has(r) ? typeof this.errors[r] == "string" ? this.errors[r][0] : this.errors[r] : "";
+    if (this.has(r))
+      return typeof this.errors[r] == "string" ? this.errors[r] : this.errors[r][0];
   }
   add(r) {
     let t = new Object();

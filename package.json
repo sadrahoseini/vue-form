@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "sadrix-vue-form",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Simple Javascript classes for handle form fields and errors.",
   "files": "dist/*",
   "main": "dist/sadrix-vue-form.es.js",

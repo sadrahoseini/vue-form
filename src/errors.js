@@ -22,7 +22,10 @@ export default class Errors {
     }
 
     get(field) {
-        return this.has(field) ? (typeof this.errors[field] === 'string' ? this.errors[field][0] : this.errors[field]) : ''
+        if (this.has(field))
+            return (typeof this.errors[field] === 'string') ? this.errors[field] : this.errors[field][0]
+        else
+            return
     }
 
     add(errors) {
