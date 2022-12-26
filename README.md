@@ -108,6 +108,15 @@ this.form.errors.set({
     password: 'Password must contain at least one character'
 });
 
+// set() method with second param, don't reset form and set exact fields errors passed in second parameter
+this.form.errors.set({
+    username: 'This username taken before',
+    password: 'Password must contain at least one character'
+}, [
+    // this array say only this fields should set and dont reset all errors
+    'username'
+]);
+
 // add() method will add or rewrite field error (Not refresh form errors)
 this.form.errors.add({
     password: 'Password must contain at least one character'
