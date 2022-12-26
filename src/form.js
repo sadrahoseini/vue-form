@@ -10,13 +10,13 @@ export default class Form {
             if (['errors', '__fields'].includes(key)) continue
 
             this[key] = value
-            this.__fields.push(key)
+            this.#__fields.push(key)
         }
         this.errors = new Errors
     }
 
     has(field) {
-        return this.__fields.includes(field)
+        return this.#__fields.includes(field)
     }
 
     get(field) {
@@ -25,7 +25,7 @@ export default class Form {
 
     all() {
         let payload = {}
-        this.__fields.map(field => { payload[field] = this.get(field) })
+        this.#__fields.map(field => { payload[field] = this.get(field) })
         return payload
     }
 
@@ -46,7 +46,7 @@ export default class Form {
     except(fields) {
         let payload = {}
 
-        this.__fields.map(field => {
+        this.#__fields.map(field => {
             if (typeof fields === 'string')
                 if (field !== fields)
                     payload[field] = this.get(field)
