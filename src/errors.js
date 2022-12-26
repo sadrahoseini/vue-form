@@ -22,7 +22,7 @@ export default class Errors {
     }
 
     get(field) {
-        return this.has(field) ? (typeof this.errors[field] == 'array' ? this.errors[field][0] : this.errors[field]) : ''
+        return this.has(field) ? (typeof this.errors[field] === 'string' ? this.errors[field][0] : this.errors[field]) : ''
     }
 
     add(errors) {
