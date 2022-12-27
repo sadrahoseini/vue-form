@@ -3,7 +3,7 @@ class i {
     this.errors = {};
   }
   has(r) {
-    return this.errors ? !!(this.errors.hasOwnProperty(r) && this.errors[r] && this.errors[r] !== void 0 && this.errors[r].length > 0) : !1;
+    return this.errors && this.errors.hasOwnProperty(r) ? !!(this.errors[r] && this.errors[r].length > 0) : !1;
   }
   passed() {
     return Object.keys(this.errors).length === 0 && this.errors.constructor === Object;
