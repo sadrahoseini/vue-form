@@ -1,34 +1,34 @@
-class n {
+class i {
   constructor() {
     this.errors = {};
   }
   has(r) {
-    return this.errors ? !!this.errors[r] : !1;
+    return this.errors ? !!(this.errors.hasOwnProperty(r) && this.errors[r] && this.errors[r] !== void 0 && this.errors[r].length > 0) : !1;
   }
   passed() {
     return Object.keys(this.errors).length === 0 && this.errors.constructor === Object;
   }
-  set(r, t = []) {
-    if (!t || t.length === 0)
+  set(r, s = []) {
+    if (!s || s.length === 0)
       this.errors = r;
     else
-      for (let s in r)
-        t.includes(s) && (this.errors[s] = r[s]);
+      for (let t in r)
+        s.includes(t) && (this.errors[t] = r[t]);
   }
   get(r) {
     if (this.has(r))
       return typeof this.errors[r] == "string" ? this.errors[r] : this.errors[r][0];
   }
   add(r) {
-    let t = new Object();
-    t = Object.assign(this.errors, r), this.errors = t, console.log(this.errors);
+    let s = new Object();
+    s = Object.assign(this.errors, r), this.errors = s, console.log(this.errors);
   }
   clear(r) {
     if (typeof r == "string")
       this.errors[r] = [];
     else if (typeof r == "array")
-      r.forEach((t) => {
-        this.errors[t] = [];
+      r.forEach((s) => {
+        this.errors[s] = [];
       });
     else
       return this.errors = {};
@@ -36,13 +36,13 @@ class n {
 }
 class o {
   constructor(r) {
-    let t = [];
+    let s = [];
     if (typeof r == "object")
-      for (const [s, i] of Object.entries(r))
-        ["errors", "__fields"].includes(s) || (this[s] = i, t.push(s));
+      for (const [t, n] of Object.entries(r))
+        ["errors", "__fields"].includes(t) || (this[t] = n, s.push(t));
     else
       console.warn("[sadrix-vue-form]: Create new Form with an object passed as constructor parameter.");
-    this.__fields = t, this.errors = new n();
+    this.__fields = s, this.errors = new i();
   }
   has(r) {
     return this.__fields.includes(r);
@@ -52,21 +52,21 @@ class o {
   }
   all() {
     let r = {};
-    return this.__fields.map((t) => {
-      r[t] = this.get(t);
+    return this.__fields.map((s) => {
+      r[s] = this.get(s);
     }), r;
   }
   only(r) {
-    let t = {};
-    return typeof r == "string" ? t[r] = this.has(r) ? this[r] : null : r.map((s) => {
-      this.has(s) && (t[s] = this.get(s));
-    }), t;
+    let s = {};
+    return typeof r == "string" ? s[r] = this.has(r) ? this[r] : null : r.map((t) => {
+      this.has(t) && (s[t] = this.get(t));
+    }), s;
   }
   except(r) {
-    let t = {};
-    return this.__fields.map((s) => {
-      typeof r == "string" && (s !== r ? t[s] = this.get(s) : r.includes(s) || (t[s] = this.get(s)));
-    }), t;
+    let s = {};
+    return this.__fields.map((t) => {
+      typeof r == "string" && (t !== r ? s[t] = this.get(t) : r.includes(t) || (s[t] = this.get(t)));
+    }), s;
   }
 }
 const h = {
