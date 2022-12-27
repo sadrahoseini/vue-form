@@ -5,7 +5,7 @@ export default class Errors {
     }
 
     has(field) {
-        return this.errors ? (this.errors[field] ? true : false) : false
+        return this.errors ? (this.errors[field] && this.errors[field].length > 0 ? true : false) : false
     }
 
     passed() {
