@@ -1,4 +1,4 @@
-console.log(`Sadrix Vue Form 1.1.9 by @sadrix - https://sadrix.com
+console.log(`Sadrix Vue Form 1.2.0 by @sadrix - https://sadrix.com
 License - https://sadrix.com MIT
-Copyright 2023 Sadrix, Inc.
+Copyright 2024 Sadrix, Inc.
 `)

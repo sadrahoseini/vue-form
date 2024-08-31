@@ -1,49 +1,81 @@
 export default class Errors {
 
     constructor() {
-        this.errors = {}
+        this.__errors = {}
     }
 
+    /**
+     * Check whether field has error or not
+     * @param {String} field 
+     * @returns 
+     */
     has(field) {
-        return this.errors && this.errors.hasOwnProperty(field) ? (this.errors[field] && this.errors[field].length > 0 ? true : false) : false
+        return this.__errors && this.__errors.hasOwnProperty(field) ? (this.__errors[field] && this.__errors[field].length > 0 ? true : false) : false
     }
 
-    passed() {
-        return Object.keys(this.errors).length === 0 && this.errors.constructor === Object
-    }
-
-    set(errors, fields = []) {
-        if (!fields || fields.length === 0)
-            this.errors = errors
-        else
-            for (let field in errors)
-                if (fields.includes(field))
-                    this.errors[field] = errors[field]
-    }
-
+    /**
+     * Get field error message
+     * @param {String} field 
+     * @returns 
+     */
     get(field) {
         if (this.has(field))
-            return (typeof this.errors[field] === 'string') ? this.errors[field] : this.errors[field][0]
+            return (typeof this.__errors[field] === 'string') ? this.__errors[field] : this.__errors[field][0]
         else
             return
     }
 
-    add(errors) {
-        let new_errors = new Object();
-        new_errors = Object.assign(this.errors, errors)
-        this.errors = new_errors
-        console.log(this.errors)
+    /**
+     * Check form errors all passed or has errors
+     * @returns {Boolean} 
+     */
+    passed() {
+        return Object.keys(this.__errors).length === 0 && this.__errors.constructor === Object
     }
 
-    clear(fields) {
+    /**
+     * Set new form errors. All errors set before will remove and new field errors will set
+     * @param {Object} errors 
+     * @param {String[]} fields 
+     */
+    set(errors, fields = []) {
+        if (!fields || fields.length === 0)
+            this.__errors = errors
+        else
+            for (let field in errors)
+                if (fields.includes(field))
+                    this.__errors[field] = errors[field]
+    }
+
+    /**
+     * Add new field errors. This method will not remove of errors
+     * @param {Object} errors 
+     */
+    add(errors) {
+        let new_errors = new Object();
+        new_errors = Object.assign(this.__errors, errors)
+        this.__errors = new_errors
+        console.log(this.__errors)
+    }
+
+    /**
+     * Clear passed field or fields list. If not passing fields value, witll clear all errors
+     * @param {?String|?String[]} fields 
+     * @returns 
+     */
+    clear(fields = null) {
         if(typeof fields == 'string') {
-            this.errors[fields] = []
+            if (this.has(fields)) {
+                delete this.__errors[fields]
+            }
         } else if (typeof fields == 'array') {
             fields.forEach((field) => {
-                this.errors[field] = []
+                if (this.has(field)) {
+                    delete this.__errors[field]
+                }
             })
         }
         else
-            return this.errors = {}
+            return this.__errors = {}
     }
 }

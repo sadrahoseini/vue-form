@@ -95,6 +95,14 @@ If you add Form as component data property, Now you can set input value to form 
 </template>
 ```
 
+### Check form passed or has errors
+
+Checking your form whether has errors or not will be useful sometimes. Just use this method and it will return a boolean.
+
+``` JavaScript
+this.form.errors.passed()
+```
+
 ## Error handling
 
 ### 1. Set errors
